@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Servionics - Robot-as-a-Service Platform</title>
+    <title>Servionics GmbH - Robot-as-a-Service Platform</title>
     
     <!-- Microsoft Clarity Analytics -->
     <script type="text/javascript">
@@ -20,6 +20,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 
     <style>
+        /* === GEMEINSAME STYLES === */
         :root {
             --color-dark: #0A0E27;
             --color-darker: #050714;
@@ -33,6 +34,13 @@
             --gradient-primary: linear-gradient(135deg, #FF6B00 0%, #FF8533 100%);
             --gradient-bg: linear-gradient(180deg, #0A0E27 0%, #050714 100%);
             --shadow-glow: 0 0 40px rgba(255, 107, 0, 0.3);
+            
+            /* Alte Farben für Compatibility */
+            --color-primary-dark: #0A192F;
+            --color-accent-orange: #FF6B00;
+            --color-text-light: #E6F1FF;
+            --color-bg-light: #F4F7FA;
+            --color-text-dark: #333333;
         }
 
         * {
@@ -42,7 +50,7 @@
         }
 
         body {
-            font-family: 'Outfit', sans-serif;
+            font-family: 'Outfit', 'Segoe UI', sans-serif;
             background: var(--gradient-bg);
             color: var(--color-text);
             min-height: 100vh;
@@ -69,7 +77,7 @@
             100% { transform: translateY(50px); }
         }
 
-        /* Navigation */
+        /* === NAVIGATION === */
         nav {
             position: fixed;
             top: 0;
@@ -80,7 +88,7 @@
             justify-content: space-between;
             align-items: center;
             z-index: 100;
-            background: rgba(10, 14, 39, 0.8);
+            background: rgba(10, 14, 39, 0.95);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 107, 0, 0.1);
         }
@@ -89,6 +97,7 @@
             font-size: 1.5rem;
             font-weight: 800;
             letter-spacing: -0.5px;
+            cursor: pointer;
         }
 
         .logo span {
@@ -104,105 +113,34 @@
         .nav-links a {
             color: var(--color-text-dim);
             text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
+            font-weight: 600;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
         }
 
-        .nav-links a:hover {
+        .nav-links a:hover,
+        .nav-links a.active {
             color: var(--color-primary);
+            background: rgba(255, 107, 0, 0.1);
         }
 
-        /* Screen Container */
-        .screen-container {
+        /* === SECTION CONTAINER === */
+        .main-content {
             position: relative;
             z-index: 1;
-            min-height: 100vh;
             padding-top: 80px;
         }
 
-        .screen {
+        .content-section {
             display: none;
-            animation: fadeIn 0.6s ease;
         }
 
-        .screen.active {
+        .content-section.active {
             display: block;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Screen 1: Hero/Landing */
-        .hero-screen {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 8rem 2rem 4rem;
-            text-align: center;
-        }
-
-        .hero-title {
-            font-size: 4rem;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 2rem;
-            background: linear-gradient(135deg, #FFFFFF 0%, var(--color-primary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-subtitle {
-            font-size: 1.5rem;
-            color: var(--color-text-dim);
-            margin-bottom: 4rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .upload-zone {
-            max-width: 600px;
-            margin: 0 auto 3rem;
-            padding: 4rem 2rem;
-            background: var(--color-surface);
-            border: 2px dashed var(--color-primary);
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .upload-zone:hover {
-            border-color: var(--color-primary-light);
-            box-shadow: var(--shadow-glow);
-            transform: translateY(-5px);
-        }
-
-        .upload-icon {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            opacity: 0.5;
-        }
-
-        .upload-text {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .upload-subtext {
-            font-size: 0.9rem;
-            color: var(--color-text-dim);
-        }
-
+        /* === BUTTONS === */
         .btn-primary {
             display: inline-block;
             padding: 1.2rem 3rem;
@@ -243,8 +181,303 @@
             color: white;
         }
 
-        /* Screen 2: Upload & Analysis */
-        .analysis-screen {
+        /* =============================================== */
+        /* SEKTION 1: SO FUNKTIONIERT'S (Alte Seite)     */
+        /* =============================================== */
+
+        /* Hero Section */
+        .info-hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+        }
+
+        .info-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #FFFFFF 0%, var(--color-primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .info-hero .subline {
+            font-size: 1.3rem;
+            color: var(--color-text-dim);
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Value Props */
+        .value-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .value-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .value-item {
+            padding: 2.5rem;
+            background: var(--color-surface);
+            border-radius: 20px;
+            border: 1px solid var(--color-surface-light);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .value-item:hover {
+            transform: translateY(-10px);
+            border-color: var(--color-primary);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .value-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .value-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--color-primary);
+        }
+
+        .value-item p {
+            color: var(--color-text-dim);
+            line-height: 1.8;
+        }
+
+        /* Process Section */
+        .process-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .process-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .process-section > p {
+            color: var(--color-text-dim);
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+        }
+
+        .process-graphic-container {
+            margin: 3rem auto;
+            max-width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            border-radius: 20px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .process-graphic-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .process-steps-text {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+            text-align: left;
+        }
+
+        .step-text {
+            padding: 2rem;
+            background: var(--color-surface);
+            border-radius: 15px;
+            border-left: 4px solid var(--color-primary);
+        }
+
+        .step-text h3 {
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+        }
+
+        .step-text p {
+            color: var(--color-text-dim);
+            line-height: 1.8;
+        }
+
+        /* Use Case Section */
+        .usecase-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .usecase-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .usecase-section > p {
+            text-align: center;
+            color: var(--color-text-dim);
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+        }
+
+        .case-study {
+            background: var(--color-surface);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid var(--color-surface-light);
+        }
+
+        .case-study h3 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--color-primary);
+        }
+
+        .quote {
+            background: var(--color-surface-light);
+            padding: 2rem;
+            border-left: 4px solid var(--color-primary);
+            font-style: italic;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .case-study strong {
+            color: var(--color-primary);
+        }
+
+        /* Trust Section */
+        .trust-section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .trust-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .trust-section p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--color-text-dim);
+        }
+
+        /* =============================================== */
+        /* SEKTION 2: VIDEO HOCHLADEN (Upload Platform)  */
+        /* =============================================== */
+
+        .upload-platform {
+            min-height: 100vh;
+        }
+
+        .screen {
+            display: none;
+            animation: fadeIn 0.6s ease;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Upload Hero */
+        .upload-hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+        }
+
+        .upload-hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #FFFFFF 0%, var(--color-primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .upload-hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--color-text-dim);
+            margin-bottom: 4rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .upload-zone {
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            padding: 4rem 2rem;
+            background: var(--color-surface);
+            border: 2px dashed var(--color-primary);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .upload-zone:hover {
+            border-color: var(--color-primary-light);
+            box-shadow: var(--shadow-glow);
+            transform: translateY(-5px);
+        }
+
+        .upload-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .upload-text {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .upload-subtext {
+            font-size: 0.9rem;
+            color: var(--color-text-dim);
+        }
+
+        /* Analysis Screen */
+        .analysis-container {
             max-width: 800px;
             margin: 0 auto;
             padding: 6rem 2rem;
@@ -293,7 +526,6 @@
             height: 100%;
             background: var(--gradient-primary);
             width: 0%;
-            transition: width 0.5s;
             animation: progressAnimation 3s ease-in-out infinite;
         }
 
@@ -325,8 +557,8 @@
             to { transform: rotate(360deg); }
         }
 
-        /* Screen 3: Analysis Results */
-        .results-screen {
+        /* Results Screen */
+        .results-container {
             max-width: 1000px;
             margin: 0 auto;
             padding: 6rem 2rem;
@@ -453,8 +685,8 @@
             color: var(--color-primary);
         }
 
-        /* Screen 4: Configurator & Pricing */
-        .config-screen {
+        /* Config Screen */
+        .config-container {
             max-width: 1000px;
             margin: 0 auto;
             padding: 6rem 2rem;
@@ -552,8 +784,8 @@
             font-size: 1.2rem;
         }
 
-        /* Screen 5: Booking */
-        .booking-screen {
+        /* Booking Screen */
+        .booking-container {
             max-width: 900px;
             margin: 0 auto;
             padding: 6rem 2rem;
@@ -671,8 +903,8 @@
             box-shadow: var(--shadow-glow);
         }
 
-        /* Screen 6: Confirmation */
-        .confirmation-screen {
+        /* Confirmation Screen */
+        .confirmation-container {
             max-width: 700px;
             margin: 0 auto;
             padding: 8rem 2rem;
@@ -789,35 +1021,52 @@
             color: var(--color-primary);
         }
 
-        /* Navigation Buttons */
+        /* Screen Navigation */
         .screen-nav {
             text-align: center;
             margin-top: 3rem;
         }
 
-        /* Responsive */
+        /* Footer */
+        footer {
+            background: rgba(10, 14, 39, 0.8);
+            border-top: 1px solid rgba(255, 107, 0, 0.1);
+            padding: 3rem 2rem;
+            text-align: center;
+            color: var(--color-text-dim);
+            margin-top: 5rem;
+        }
+
+        /* === RESPONSIVE === */
         @media (max-width: 768px) {
             nav {
                 padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
             }
 
             .nav-links {
-                display: none;
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
             }
 
-            .hero-title {
+            .info-hero h1,
+            .upload-hero h1 {
                 font-size: 2.5rem;
             }
 
-            .hero-subtitle {
-                font-size: 1.2rem;
+            .info-hero .subline,
+            .upload-hero .subtitle {
+                font-size: 1.1rem;
             }
 
-            .btn-primary,
-            .btn-secondary {
-                display: block;
-                width: 100%;
-                margin: 0.5rem 0;
+            .value-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-steps-text {
+                grid-template-columns: 1fr;
             }
 
             .robot-details {
@@ -843,348 +1092,483 @@
             .calendar-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
+
+            .btn-primary,
+            .btn-secondary {
+                display: block;
+                width: 100%;
+                margin: 0.5rem 0;
+            }
         }
     </style>
 </head>
 <body>
     <div class="bg-grid"></div>
 
+    <!-- Navigation -->
     <nav>
-        <div class="logo">Servio<span>nics</span></div>
+        <div class="logo" onclick="showSection('info')">Servio<span>nics</span></div>
         <ul class="nav-links">
-            <li><a href="#how-it-works">So funktioniert's</a></li>
-            <li><a href="#pricing">Preise</a></li>
-            <li><a href="#contact">Kontakt</a></li>
+            <li><a href="#" class="active" onclick="showSection('info'); return false;">So funktioniert's</a></li>
+            <li><a href="#" onclick="showSection('upload'); return false;">Video hochladen</a></li>
+            <li><a href="#kontakt">Kontakt</a></li>
         </ul>
     </nav>
 
-    <div class="screen-container">
-        <!-- Screen 1: Hero/Landing -->
-        <div class="screen active" id="screen-1">
-            <div class="hero-screen">
-                <h1 class="hero-title">Video hochladen.<br>Roboter bekommen.</h1>
-                <p class="hero-subtitle">Zeigen Sie uns Ihren Prozess. Unsere KI analysiert, trainiert und liefert den perfekten Roboter – startbereit.</p>
+    <div class="main-content">
+        <!-- ========================================= -->
+        <!-- SEKTION 1: SO FUNKTIONIERT'S            -->
+        <!-- ========================================= -->
+        <div id="info-section" class="content-section active">
+            <!-- Hero -->
+            <div class="info-hero">
+                <h1>Robot-as-a-Service<br>für den deutschen Mittelstand</h1>
+                <p class="subline">Wir bringen Ihnen den betriebsbereiten Roboter – inklusive KI-Skill, IT-Integration und Wartung. Ohne eigene Robotik-Expertise. Ohne Investitionsrisiko. Monatlich kündbar.</p>
+                <button class="btn-primary" onclick="showSection('upload')">Jetzt Video hochladen</button>
+                <a href="#process" class="btn-secondary">Mehr erfahren</a>
+            </div>
+
+            <!-- Value Propositions -->
+            <div class="value-section">
+                <h2>Warum Servionics?</h2>
+                <div class="value-grid">
+                    <div class="value-item">
+                        <div class="value-icon">🤖</div>
+                        <h3>Schlüsselfertige Roboterlösung</h3>
+                        <p>Vom 3D-Scan über KI-Training im Servionics Omniverse bis zur Inbetriebnahme – alles aus einer Hand.</p>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">🔒</div>
+                        <h3>Sovereign Cloud & Sicherheit</h3>
+                        <p>Made & Hosted in Germany. Ihre Daten bleiben in Europa, auf souveräner Infrastruktur (Telekom / Schwarz-Gruppe).</p>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">💼</div>
+                        <h3>As-a-Service Modell</h3>
+                        <p>Keine hohen Investitionen. Transparente Monatsrate inklusive Wartung, Updates und Support. Flexibel skalierbar.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Process -->
+            <div class="process-section" id="process">
+                <h2>Ihr Weg zum einsatzbereiten Roboter</h2>
+                <p>Unser "Robot-as-a-Service" Modell nimmt Ihnen die Komplexität ab.</p>
                 
-                <div class="upload-zone" onclick="nextScreen(2)">
-                    <div class="upload-icon">📹</div>
-                    <div class="upload-text">Video hier ablegen</div>
-                    <div class="upload-subtext">oder klicken zum Durchsuchen • Max. 500MB • MP4, MOV, AVI</div>
+                <div class="process-graphic-container">
+                    <img src="image_8.png" alt="Servionics Robot-as-a-Service Prozessgrafik">
                 </div>
 
-                <button class="btn-primary" onclick="nextScreen(2)">Jetzt starten</button>
-                <a href="#" class="btn-secondary">Demo ansehen</a>
+                <div class="process-steps-text">
+                    <div class="step-text">
+                        <h3>1. Anfrage & Analyse</h3>
+                        <p>Sie beschreiben das Problem. Unser Elite-Team kommt für einen <strong>professionellen 3D-Scan</strong> und die Prozessaufnahme zu Ihnen vor Ort.</p>
+                    </div>
+                    <div class="step-text">
+                        <h3>2. Digitales Training</h3>
+                        <p>Wir trainieren den Roboter im <strong>Servionics Omniverse</strong>, bis der "Skill" perfekt sitzt – ohne Ihren laufenden Betrieb zu stören.</p>
+                    </div>
+                    <div class="step-text">
+                        <h3>3. Lieferung & Integration</h3>
+                        <p>Der Roboter kommt Just-in-Time vom OEM-Lager. Wir integrieren ihn physisch und binden ihn <strong>sicher an Ihre IT</strong> an.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Use Case -->
+            <div class="usecase-section">
+                <h2>Use Case: Was wir konkret lösen</h2>
+                <p>Automatisierung ist abstrakt. Hier ein Beispiel aus der Praxis, das zeigt, wie wir komplexe, monotone Aufgaben übernehmen.</p>
+
+                <div class="case-study">
+                    <h3>End-of-Line Automatisierung in der Kunststofffertigung</h3>
+                    <div class="quote">
+                        "Wir produzieren Eimer im 24/7-Betrieb. Die kommen unsortiert und oft leicht ölig in eine Kiste. Ein Mitarbeiter muss sortieren, Karton falten, 30 Stück packen, zukleben, Foto machen, Lieferschein auslösen. Das ist monoton und wir finden kaum Personal."
+                        <br><small style="color: var(--color-text-dim);">- Geschäftsführer, Hidden Champion Kunststofftechnik</small>
+                    </div>
+                    <p><strong>Die Servionics-Lösung:</strong> Wir entwickeln einen kombinierten Roboter-Skill. Ein visionsbasierter Roboter erkennt Farbe und Lage der Eimer (Griff in die Kiste). Der Prozess übernimmt das Aufrichten des Kartons, das präzise Packen, den Verschluss sowie die automatische Fotodokumentation und Lieferschein-Auslösung im ERP.</p>
+                    <p><strong>Ergebnis:</strong> 100% Prozessautonomie, lückenlose Dokumentation, Mitarbeiterentlastung.</p>
+                </div>
+            </div>
+
+            <!-- Trust -->
+            <div class="trust-section">
+                <h2>High-Tech, "Made & Hosted in Germany"</h2>
+                <p>Wir nutzen modernste KI und Simulation im Industrial Metaverse, um Skills zu entwickeln. Aber Ihre Daten verlassen nie den sicheren Rechtsraum. Unsere Plattform läuft auf souveräner Infrastruktur (Telekom / Schwarz Gruppe Partner), komplett entkoppelt von öffentlichen Clouds. Ihre Produktionsgeheimnisse bleiben Ihre Geheimnisse.</p>
             </div>
         </div>
 
-        <!-- Screen 2: Upload & Analysis -->
-        <div class="screen" id="screen-2">
-            <div class="analysis-screen">
-                <div class="analysis-header">
-                    <h2>Video wird analysiert...</h2>
-                    <p style="color: var(--color-text-dim);">Unsere KI extrahiert Bewegungsabläufe und Prozessschritte</p>
-                </div>
-
-                <div class="video-preview">
-                    <div class="video-placeholder">🎬</div>
-                    <div class="progress-bar">
-                        <div class="progress-fill"></div>
-                    </div>
-                    <p style="text-align: center; color: var(--color-text-dim); font-size: 0.9rem;">production_line_video.mp4 • 145 MB</p>
-                </div>
-
-                <div class="analysis-status">
-                    <div class="spinner"></div>
-                    <div>
-                        <div style="font-weight: 700; margin-bottom: 0.3rem;">Prozess-Analyse läuft</div>
-                        <div style="font-size: 0.9rem; color: var(--color-text-dim);">Erkenne Objekte, Bewegungen und Umgebung...</div>
-                    </div>
-                </div>
-
-                <div class="screen-nav">
-                    <button class="btn-primary" onclick="nextScreen(3)">Analyse abgeschlossen - Weiter</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Screen 3: Analysis Results -->
-        <div class="screen" id="screen-3">
-            <div class="results-screen">
-                <div class="results-header">
-                    <div class="success-badge">✓ Analyse abgeschlossen</div>
-                    <h2>Wir haben Ihren Prozess verstanden</h2>
-                    <p style="color: var(--color-text-dim);">3 Hauptaufgaben identifiziert • Automatisierbarkeit: 95%</p>
-                </div>
-
-                <div class="detected-tasks">
-                    <div class="task-card">
-                        <div class="task-icon">🤏</div>
-                        <div class="task-content">
-                            <h3>Greifen aus Kiste</h3>
-                            <p>Vision-basiertes Pick & Place mit unsortierten Teilen • Erfordert 3D-Vision System</p>
+        <!-- ========================================= -->
+        <!-- SEKTION 2: VIDEO HOCHLADEN               -->
+        <!-- ========================================= -->
+        <div id="upload-section" class="content-section">
+            <div class="upload-platform">
+                <!-- Screen 1: Upload Hero -->
+                <div class="screen active" id="upload-screen-1">
+                    <div class="upload-hero">
+                        <h1>Video hochladen.<br>Roboter bekommen.</h1>
+                        <p class="subtitle">Zeigen Sie uns Ihren Prozess. Unsere KI analysiert, trainiert und liefert den perfekten Roboter – startbereit.</p>
+                        
+                        <div class="upload-zone" onclick="nextUploadScreen(2)">
+                            <div class="upload-icon">📹</div>
+                            <div class="upload-text">Video hier ablegen</div>
+                            <div class="upload-subtext">oder klicken zum Durchsuchen • Max. 500MB • MP4, MOV, AVI</div>
                         </div>
-                    </div>
 
-                    <div class="task-card">
-                        <div class="task-icon">🎨</div>
-                        <div class="task-content">
-                            <h3>Farb-Sortierung</h3>
-                            <p>Objekterkennung mit Klassifizierung nach Farbe • RGB-Kamera ausreichend</p>
+                        <button class="btn-primary" onclick="nextUploadScreen(2)">Jetzt starten</button>
+                        <a href="#" class="btn-secondary" onclick="showSection('info'); return false;">Zurück zur Übersicht</a>
+                    </div>
+                </div>
+
+                <!-- Screen 2: Analysis -->
+                <div class="screen" id="upload-screen-2">
+                    <div class="analysis-container">
+                        <div class="analysis-header">
+                            <h2>Video wird analysiert...</h2>
+                            <p style="color: var(--color-text-dim);">Unsere KI extrahiert Bewegungsabläufe und Prozessschritte</p>
                         </div>
-                    </div>
 
-                    <div class="task-card">
-                        <div class="task-icon">📦</div>
-                        <div class="task-content">
-                            <h3>Karton-Verpackung</h3>
-                            <p>Präzises Ablegen in vorgegebenes Muster • 30 Stück pro Karton</p>
+                        <div class="video-preview">
+                            <div class="video-placeholder">🎬</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                            <p style="text-align: center; color: var(--color-text-dim); font-size: 0.9rem;">production_line_video.mp4 • 145 MB</p>
+                        </div>
+
+                        <div class="analysis-status">
+                            <div class="spinner"></div>
+                            <div>
+                                <div style="font-weight: 700; margin-bottom: 0.3rem;">Prozess-Analyse läuft</div>
+                                <div style="font-size: 0.9rem; color: var(--color-text-dim);">Erkenne Objekte, Bewegungen und Umgebung...</div>
+                            </div>
+                        </div>
+
+                        <div class="screen-nav">
+                            <button class="btn-primary" onclick="nextUploadScreen(3)">Analyse abgeschlossen - Weiter</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="robot-recommendation">
-                    <h3>🤖 Empfohlener Roboter</h3>
-                    <div class="robot-details">
-                        <div class="robot-image">🦾</div>
-                        <div>
-                            <h4 style="margin-bottom: 1rem; font-size: 1.3rem;">Universal Robots UR10e</h4>
-                            <div class="robot-specs">
-                                <div class="spec-item">
-                                    <div class="spec-label">Reichweite</div>
-                                    <div class="spec-value">1300 mm</div>
+                <!-- Screen 3: Results -->
+                <div class="screen" id="upload-screen-3">
+                    <div class="results-container">
+                        <div class="results-header">
+                            <div class="success-badge">✓ Analyse abgeschlossen</div>
+                            <h2>Wir haben Ihren Prozess verstanden</h2>
+                            <p style="color: var(--color-text-dim);">3 Hauptaufgaben identifiziert • Automatisierbarkeit: 95%</p>
+                        </div>
+
+                        <div class="detected-tasks">
+                            <div class="task-card">
+                                <div class="task-icon">🤏</div>
+                                <div class="task-content">
+                                    <h3>Greifen aus Kiste</h3>
+                                    <p>Vision-basiertes Pick & Place mit unsortierten Teilen • Erfordert 3D-Vision System</p>
                                 </div>
-                                <div class="spec-item">
-                                    <div class="spec-label">Traglast</div>
-                                    <div class="spec-value">12.5 kg</div>
+                            </div>
+
+                            <div class="task-card">
+                                <div class="task-icon">🎨</div>
+                                <div class="task-content">
+                                    <h3>Farb-Sortierung</h3>
+                                    <p>Objekterkennung mit Klassifizierung nach Farbe • RGB-Kamera ausreichend</p>
                                 </div>
-                                <div class="spec-item">
-                                    <div class="spec-label">Vision System</div>
-                                    <div class="spec-value">3D Stereo</div>
-                                </div>
-                                <div class="spec-item">
-                                    <div class="spec-label">Lieferzeit</div>
-                                    <div class="spec-value">14 Tage</div>
+                            </div>
+
+                            <div class="task-card">
+                                <div class="task-icon">📦</div>
+                                <div class="task-content">
+                                    <h3>Karton-Verpackung</h3>
+                                    <p>Präzises Ablegen in vorgegebenes Muster • 30 Stück pro Karton</p>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
 
-                <div class="screen-nav">
-                    <button class="btn-primary" onclick="nextScreen(4)">Angebot konfigurieren</button>
-                </div>
-            </div>
-        </div>
+                        <div class="robot-recommendation">
+                            <h3>🤖 Empfohlener Roboter</h3>
+                            <div class="robot-details">
+                                <div class="robot-image">🦾</div>
+                                <div>
+                                    <h4 style="margin-bottom: 1rem; font-size: 1.3rem;">Universal Robots UR10e</h4>
+                                    <div class="robot-specs">
+                                        <div class="spec-item">
+                                            <div class="spec-label">Reichweite</div>
+                                            <div class="spec-value">1300 mm</div>
+                                        </div>
+                                        <div class="spec-item">
+                                            <div class="spec-label">Traglast</div>
+                                            <div class="spec-value">12.5 kg</div>
+                                        </div>
+                                        <div class="spec-item">
+                                            <div class="spec-label">Vision System</div>
+                                            <div class="spec-value">3D Stereo</div>
+                                        </div>
+                                        <div class="spec-item">
+                                            <div class="spec-label">Lieferzeit</div>
+                                            <div class="spec-value">14 Tage</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-        <!-- Screen 4: Configurator & Pricing -->
-        <div class="screen" id="screen-4">
-            <div class="config-screen">
-                <div class="results-header">
-                    <h2>Konfiguration & Preis</h2>
-                    <p style="color: var(--color-text-dim);">Passen Sie die Parameter an Ihre Anforderungen an</p>
-                </div>
-
-                <div class="pricing-card">
-                    <div class="price-display">
-                        <div class="price-amount" id="price-display">2.499€</div>
-                        <div class="price-period">pro Monat • 24 Monate Mindestlaufzeit</div>
-                    </div>
-
-                    <div class="config-slider">
-                        <div class="slider-label">
-                            <span>Betriebsstunden pro Tag</span>
-                            <span class="slider-value" id="hours-value">16h</span>
-                        </div>
-                        <input type="range" min="8" max="24" value="16" id="hours-slider" oninput="updatePrice()">
-                    </div>
-
-                    <div class="config-slider">
-                        <div class="slider-label">
-                            <span>Zyklen pro Stunde</span>
-                            <span class="slider-value" id="cycles-value">120</span>
-                        </div>
-                        <input type="range" min="60" max="240" value="120" step="10" id="cycles-slider" oninput="updatePrice()">
-                    </div>
-
-                    <div class="features-grid">
-                        <div class="feature-item">
-                            <span class="feature-check">✓</span>
-                            <span>Roboter-Hardware</span>
-                        </div>
-                        <div class="feature-item">
-                            <span class="feature-check">✓</span>
-                            <span>KI-Skills vortrainiert</span>
-                        </div>
-                        <div class="feature-item">
-                            <span class="feature-check">✓</span>
-                            <span>3D-Scan & Integration</span>
-                        </div>
-                        <div class="feature-item">
-                            <span class="feature-check">✓</span>
-                            <span>Wartung & Updates</span>
-                        </div>
-                        <div class="feature-item">
-                            <span class="feature-check">✓</span>
-                            <span>24/7 Support</span>
-                        </div>
-                        <div class="feature-item">
-                            <span class="feature-check">✓</span>
-                            <span>Souveräne Cloud (DE)</span>
+                        <div class="screen-nav">
+                            <button class="btn-primary" onclick="nextUploadScreen(4)">Angebot konfigurieren</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="screen-nav">
-                    <button class="btn-primary" onclick="nextScreen(5)">Termin buchen</button>
-                </div>
-            </div>
-        </div>
+                <!-- Screen 4: Config & Pricing -->
+                <div class="screen" id="upload-screen-4">
+                    <div class="config-container">
+                        <div class="results-header">
+                            <h2>Konfiguration & Preis</h2>
+                            <p style="color: var(--color-text-dim);">Passen Sie die Parameter an Ihre Anforderungen an</p>
+                        </div>
 
-        <!-- Screen 5: Booking -->
-        <div class="screen" id="screen-5">
-            <div class="booking-screen">
-                <div class="results-header">
-                    <h2>Buchen Sie Ihren 3D-Scan Termin</h2>
-                    <p style="color: var(--color-text-dim);">Unser Team kommt zu Ihnen vor Ort</p>
-                </div>
+                        <div class="pricing-card">
+                            <div class="price-display">
+                                <div class="price-amount" id="price-display">2.499€</div>
+                                <div class="price-period">pro Monat • 24 Monate Mindestlaufzeit</div>
+                            </div>
 
-                <div class="timeline">
-                    <div class="timeline-item active">
-                        <div class="timeline-dot">1</div>
-                        <div class="timeline-label">3D-Scan</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-dot">2</div>
-                        <div class="timeline-label">Training</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-dot">3</div>
-                        <div class="timeline-label">Lieferung</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-dot">4</div>
-                        <div class="timeline-label">Go-Live</div>
-                    </div>
-                </div>
+                            <div class="config-slider">
+                                <div class="slider-label">
+                                    <span>Betriebsstunden pro Tag</span>
+                                    <span class="slider-value" id="hours-value">16h</span>
+                                </div>
+                                <input type="range" min="8" max="24" value="16" id="hours-slider" oninput="updatePrice()">
+                            </div>
 
-                <div class="booking-form">
-                    <div class="form-group">
-                        <label>Ihr Name</label>
-                        <input type="text" placeholder="Max Mustermann">
-                    </div>
+                            <div class="config-slider">
+                                <div class="slider-label">
+                                    <span>Zyklen pro Stunde</span>
+                                    <span class="slider-value" id="cycles-value">120</span>
+                                </div>
+                                <input type="range" min="60" max="240" value="120" step="10" id="cycles-slider" oninput="updatePrice()">
+                            </div>
 
-                    <div class="form-group">
-                        <label>Unternehmen</label>
-                        <input type="text" placeholder="Mustermann GmbH">
-                    </div>
+                            <div class="features-grid">
+                                <div class="feature-item">
+                                    <span class="feature-check">✓</span>
+                                    <span>Roboter-Hardware</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-check">✓</span>
+                                    <span>KI-Skills vortrainiert</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-check">✓</span>
+                                    <span>3D-Scan & Integration</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-check">✓</span>
+                                    <span>Wartung & Updates</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-check">✓</span>
+                                    <span>24/7 Support</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-check">✓</span>
+                                    <span>Souveräne Cloud (DE)</span>
+                                </div>
+                            </div>
+                        </div>
 
-                    <div class="form-group">
-                        <label>E-Mail</label>
-                        <input type="email" placeholder="max@mustermann.de">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Telefon</label>
-                        <input type="tel" placeholder="+49 123 456789">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Wunschtermin (Klicken zum Auswählen)</label>
-                        <div class="calendar-grid">
-                            <div class="calendar-day" onclick="this.classList.add('selected')">Mo<br>22.1</div>
-                            <div class="calendar-day" onclick="this.classList.add('selected')">Di<br>23.1</div>
-                            <div class="calendar-day" onclick="this.classList.add('selected')">Mi<br>24.1</div>
-                            <div class="calendar-day" onclick="this.classList.add('selected')">Do<br>25.1</div>
-                            <div class="calendar-day" onclick="this.classList.add('selected')">Fr<br>26.1</div>
-                            <div class="calendar-day" onclick="this.classList.add('selected')">Mo<br>29.1</div>
-                            <div class="calendar-day" onclick="this.classList.add('selected')">Di<br>30.1</div>
+                        <div class="screen-nav">
+                            <button class="btn-primary" onclick="nextUploadScreen(5)">Termin buchen</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="screen-nav">
-                    <button class="btn-primary" onclick="nextScreen(6)">Projekt starten</button>
+                <!-- Screen 5: Booking -->
+                <div class="screen" id="upload-screen-5">
+                    <div class="booking-container">
+                        <div class="results-header">
+                            <h2>Buchen Sie Ihren 3D-Scan Termin</h2>
+                            <p style="color: var(--color-text-dim);">Unser Team kommt zu Ihnen vor Ort</p>
+                        </div>
+
+                        <div class="timeline">
+                            <div class="timeline-item active">
+                                <div class="timeline-dot">1</div>
+                                <div class="timeline-label">3D-Scan</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot">2</div>
+                                <div class="timeline-label">Training</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot">3</div>
+                                <div class="timeline-label">Lieferung</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot">4</div>
+                                <div class="timeline-label">Go-Live</div>
+                            </div>
+                        </div>
+
+                        <div class="booking-form">
+                            <div class="form-group">
+                                <label>Ihr Name</label>
+                                <input type="text" placeholder="Max Mustermann">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Unternehmen</label>
+                                <input type="text" placeholder="Mustermann GmbH">
+                            </div>
+
+                            <div class="form-group">
+                                <label>E-Mail</label>
+                                <input type="email" placeholder="max@mustermann.de">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Telefon</label>
+                                <input type="tel" placeholder="+49 123 456789">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Wunschtermin (Klicken zum Auswählen)</label>
+                                <div class="calendar-grid">
+                                    <div class="calendar-day" onclick="this.classList.add('selected')">Mo<br>22.1</div>
+                                    <div class="calendar-day" onclick="this.classList.add('selected')">Di<br>23.1</div>
+                                    <div class="calendar-day" onclick="this.classList.add('selected')">Mi<br>24.1</div>
+                                    <div class="calendar-day" onclick="this.classList.add('selected')">Do<br>25.1</div>
+                                    <div class="calendar-day" onclick="this.classList.add('selected')">Fr<br>26.1</div>
+                                    <div class="calendar-day" onclick="this.classList.add('selected')">Mo<br>29.1</div>
+                                    <div class="calendar-day" onclick="this.classList.add('selected')">Di<br>30.1</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="screen-nav">
+                            <button class="btn-primary" onclick="nextUploadScreen(6)">Projekt starten</button>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <!-- Screen 6: Confirmation -->
-        <div class="screen" id="screen-6">
-            <div class="confirmation-screen">
-                <div class="success-icon">✓</div>
-                <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Projekt erfolgreich angelegt!</h2>
-                <p style="color: var(--color-text-dim); margin-bottom: 2rem;">Ihr Automatisierungs-Projekt ist in Arbeit</p>
+                <!-- Screen 6: Confirmation -->
+                <div class="screen" id="upload-screen-6">
+                    <div class="confirmation-container">
+                        <div class="success-icon">✓</div>
+                        <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Projekt erfolgreich angelegt!</h2>
+                        <p style="color: var(--color-text-dim); margin-bottom: 2rem;">Ihr Automatisierungs-Projekt ist in Arbeit</p>
 
-                <div class="project-id">Projekt-ID: SRV-2024-0142</div>
+                        <div class="project-id">Projekt-ID: SRV-2024-0142</div>
 
-                <div class="status-tracker">
-                    <div class="status-item completed">
-                        <div class="status-icon">✓</div>
-                        <div class="status-content">
-                            <div class="status-title">Video-Analyse abgeschlossen</div>
-                            <div class="status-description">Prozess erfolgreich erfasst und validiert</div>
+                        <div class="status-tracker">
+                            <div class="status-item completed">
+                                <div class="status-icon">✓</div>
+                                <div class="status-content">
+                                    <div class="status-title">Video-Analyse abgeschlossen</div>
+                                    <div class="status-description">Prozess erfolgreich erfasst und validiert</div>
+                                </div>
+                                <div class="status-time">Heute</div>
+                            </div>
+
+                            <div class="status-item current">
+                                <div class="status-icon">📅</div>
+                                <div class="status-content">
+                                    <div class="status-title">3D-Scan Termin vereinbaren</div>
+                                    <div class="status-description">Unser Team meldet sich in 24h für Terminabstimmung</div>
+                                </div>
+                                <div class="status-time">In 1 Tag</div>
+                            </div>
+
+                            <div class="status-item">
+                                <div class="status-icon">🤖</div>
+                                <div class="status-content">
+                                    <div class="status-title">Skill-Training im Omniverse</div>
+                                    <div class="status-description">Digitaler Zwilling & KI-Training (ca. 7-10 Tage)</div>
+                                </div>
+                                <div class="status-time">In 3 Tagen</div>
+                            </div>
+
+                            <div class="status-item">
+                                <div class="status-icon">🚚</div>
+                                <div class="status-content">
+                                    <div class="status-title">Roboter-Lieferung & Integration</div>
+                                    <div class="status-description">Installation vor Ort und Inbetriebnahme</div>
+                                </div>
+                                <div class="status-time">In 14 Tagen</div>
+                            </div>
+
+                            <div class="status-item">
+                                <div class="status-icon">🎯</div>
+                                <div class="status-content">
+                                    <div class="status-title">Go-Live</div>
+                                    <div class="status-description">Ihr Roboter ist produktiv im Einsatz</div>
+                                </div>
+                                <div class="status-time">In 21 Tagen</div>
+                            </div>
                         </div>
-                        <div class="status-time">Heute</div>
-                    </div>
 
-                    <div class="status-item current">
-                        <div class="status-icon">📅</div>
-                        <div class="status-content">
-                            <div class="status-title">3D-Scan Termin vereinbaren</div>
-                            <div class="status-description">Unser Team meldet sich in 24h für Terminabstimmung</div>
+                        <div class="screen-nav">
+                            <button class="btn-primary" onclick="resetUpload()">Neues Projekt starten</button>
+                            <button class="btn-secondary" onclick="showSection('info')">Zurück zur Übersicht</button>
                         </div>
-                        <div class="status-time">In 1 Tag</div>
                     </div>
-
-                    <div class="status-item">
-                        <div class="status-icon">🤖</div>
-                        <div class="status-content">
-                            <div class="status-title">Skill-Training im Omniverse</div>
-                            <div class="status-description">Digitaler Zwilling & KI-Training (ca. 7-10 Tage)</div>
-                        </div>
-                        <div class="status-time">In 3 Tagen</div>
-                    </div>
-
-                    <div class="status-item">
-                        <div class="status-icon">🚚</div>
-                        <div class="status-content">
-                            <div class="status-title">Roboter-Lieferung & Integration</div>
-                            <div class="status-description">Installation vor Ort und Inbetriebnahme</div>
-                        </div>
-                        <div class="status-time">In 14 Tagen</div>
-                    </div>
-
-                    <div class="status-item">
-                        <div class="status-icon">🎯</div>
-                        <div class="status-content">
-                            <div class="status-title">Go-Live</div>
-                            <div class="status-description">Ihr Roboter ist produktiv im Einsatz</div>
-                        </div>
-                        <div class="status-time">In 21 Tagen</div>
-                    </div>
-                </div>
-
-                <div class="screen-nav">
-                    <button class="btn-primary" onclick="location.reload()">Neues Projekt starten</button>
-                    <a href="index.html" class="btn-secondary">Zur Hauptseite</a>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Footer -->
+    <footer id="kontakt">
+        <p>&copy; 2024 Servionics GmbH. German Engineering for the Digital Age.</p>
+        <p style="margin-top: 1rem;">Impressum | Datenschutz | AGB</p>
+    </footer>
+
     <script>
-        function nextScreen(screenNumber) {
-            // Hide all screens
-            document.querySelectorAll('.screen').forEach(screen => {
-                screen.classList.remove('active');
+        // Section Switching
+        function showSection(sectionName) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
             });
             
-            // Show target screen
-            document.getElementById('screen-' + screenNumber).classList.add('active');
+            // Show target section
+            if (sectionName === 'info') {
+                document.getElementById('info-section').classList.add('active');
+            } else if (sectionName === 'upload') {
+                document.getElementById('upload-section').classList.add('active');
+                resetUpload(); // Reset to first screen
+            }
+            
+            // Update nav links
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            event.target.classList.add('active');
             
             // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
+        // Upload Platform Screen Navigation
+        function nextUploadScreen(screenNumber) {
+            // Hide all upload screens
+            document.querySelectorAll('#upload-section .screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            
+            // Show target screen
+            document.getElementById('upload-screen-' + screenNumber).classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function resetUpload() {
+            nextUploadScreen(1);
+        }
+
+        // Price Calculator
         function updatePrice() {
             const hours = document.getElementById('hours-slider').value;
             const cycles = document.getElementById('cycles-slider').value;
@@ -1193,7 +1577,7 @@
             document.getElementById('hours-value').textContent = hours + 'h';
             document.getElementById('cycles-value').textContent = cycles;
             
-            // Simple pricing calculation (dummy)
+            // Simple pricing calculation
             const basePrice = 1999;
             const hourFactor = (hours - 8) * 30;
             const cycleFactor = (cycles - 60) * 2;
@@ -1202,8 +1586,10 @@
             document.getElementById('price-display').textContent = totalPrice.toLocaleString('de-DE') + '€';
         }
 
-        // Initialize price on load
-        updatePrice();
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updatePrice();
+        });
     </script>
 </body>
 </html>
