@@ -559,5 +559,97 @@
         });
     </script>
 
+    <!-- Feedback Widget -->
+    <div id="feedback-widget" class="feedback-widget">
+        <div id="feedback-question" class="feedback-question">
+            <p>War diese Seite hilfreich?</p>
+            <button class="feedback-btn feedback-yes" onclick="submitFeedback('yes')">👍 Ja</button>
+            <button class="feedback-btn feedback-no" onclick="submitFeedback('no')">👎 Nein</button>
+        </div>
+        <div id="feedback-thanks" class="feedback-thanks" style="display: none;">
+            <p>✅ Danke für dein Feedback!</p>
+        </div>
+    </div>
+
+    <style>
+        .feedback-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            z-index: 1000;
+            max-width: 300px;
+        }
+
+        .feedback-question p {
+            margin: 0 0 1rem 0;
+            font-weight: 600;
+            color: var(--color-text-dark);
+        }
+
+        .feedback-btn {
+            padding: 0.6rem 1.2rem;
+            margin: 0 0.5rem 0 0;
+            border: 2px solid var(--color-accent-orange);
+            background: white;
+            color: var(--color-accent-orange);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .feedback-btn:hover {
+            background: var(--color-accent-orange);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .feedback-thanks {
+            text-align: center;
+        }
+
+        .feedback-thanks p {
+            margin: 0;
+            font-weight: 600;
+            color: #28a745;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .feedback-widget {
+                bottom: 10px;
+                right: 10px;
+                left: 10px;
+                max-width: none;
+            }
+        }
+    </style>
+
+    <script>
+        function submitFeedback(response) {
+            // Verstecke die Frage
+            document.getElementById('feedback-question').style.display = 'none';
+            // Zeige das Danke
+            document.getElementById('feedback-thanks').style.display = 'block';
+            
+            // Tracking in Clarity (falls du später auswerten willst)
+            if (window.clarity) {
+                clarity("set", "feedback", response);
+            }
+            
+            // Nach 3 Sekunden Widget ausblenden
+            setTimeout(function() {
+                document.getElementById('feedback-widget').style.opacity = '0';
+                setTimeout(function() {
+                    document.getElementById('feedback-widget').style.display = 'none';
+                }, 500);
+            }, 3000);
+        }
+    </script>
+
 </body>
 </html>
